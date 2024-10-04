@@ -10,7 +10,7 @@ body {
     background-size: 400px; /* Adjust the size as needed */
     background-repeat: repeat;
         background-position: -50px -50px;
-        height:100vh;
+        height:98vh;
 }
 .content {
     width:100%;
