@@ -4,3 +4,8 @@ body {
     background-repeat: repeat;
         background-position: -50px -50px;
 }
+.content {
+    width:100vh;
+    height:100vh;
+    display:flex;
+}
