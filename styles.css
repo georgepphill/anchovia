@@ -2,4 +2,5 @@ body {
     background-image: url("anchovia.jpeg");
     background-size: 400px; /* Adjust the size as needed */
     background-repeat: repeat;
+        background-position: -50px -50px;
 }
