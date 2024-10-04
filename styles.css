@@ -9,4 +9,13 @@ body {
     width:100%;
     height:100%;
     display:flex;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+iframe {
+    margin-bottom: 8rem;
 }
