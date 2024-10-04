@@ -1,8 +1,4 @@
-@media all and (max-width:700px) {
-body {
-    background-size:200px;
-}
-}
+
 
 
 body {
@@ -26,3 +22,8 @@ body {
 iframe {
     margin-bottom: 8rem;
 }
+@media all and (max-width:700px) {
+    body {
+        background-size:200px;
+    }
+    }
