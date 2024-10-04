@@ -1,3 +1,10 @@
+@media all and ("max-width:700px") {
+body {
+    background-size:200px;
+}
+}
+
+
 body {
     background-image: url("anchovia.jpeg");
     background-size: 400px; /* Adjust the size as needed */
