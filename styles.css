@@ -3,7 +3,7 @@ body {
     background-size: 400px; 
     background-repeat: repeat;
     background-position: -50px -50px;
-    height: 98vh;
+    height: 90vh;
     animation: moveBackground 60s linear infinite;
 }
 
