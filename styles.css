@@ -12,7 +12,7 @@ body {
         background-position: -50px -50px;
     }
     100% {
-        background-position: 1000px 1000px; /* Adjust to achieve the desired effect */
+        background-position: 750px 750px; /* Adjust to achieve the desired effect */
     }
 }
 
@@ -28,6 +28,13 @@ body {
 iframe {
     margin-bottom: 8rem;
 }
+.sparkle {
+    position: fixed;
+    z-index: 6;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
 
 @media all and (max-width: 700px) {
     body {
