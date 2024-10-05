@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let offsetY = 0;
     let directionX = 0;
     let directionY = 0;
-    const speedFactor = 0.05; // Control speed of movement, smaller value for slower movement
+    const speedFactor = 0.01; // Control speed of movement, smaller value for slower movement
 
     function updateBackgroundPosition() {
         // Adjust the movement direction for a smooth background transition
