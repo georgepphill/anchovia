@@ -7,7 +7,7 @@ const tiny = [];
 const tiny_x = [];
 const tiny_y = [];
 const tiny_remaining_ticks = [];
-const sparkles = 250; // total number of stars, same as number of dots
+const sparkles = 100; // total number of stars, same as number of dots
 const sparkle_lifetime = 30; // each star lives for twice this, then turns into a dot that also lives twice this
 const sparkle_distance = 30; // pixels
 
