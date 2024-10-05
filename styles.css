@@ -1,19 +1,11 @@
 body {
     background-image: url("anchovia1.png");
-    background-size: 400px; 
+    background-size: 400px; /* Adjust the size as needed */
     background-repeat: repeat;
     background-position: -50px -50px;
-    height: 90vh;
-    animation: moveBackground 60s linear infinite;
-}
-
-@keyframes moveBackground {
-    0% {
-        background-position: -50px -50px;
-    }
-    100% {
-        background-position: 750px 750px; /* Adjust to achieve the desired effect */
-    }
+    height: 98vh;
+    overflow: hidden;
+    margin: 0;
 }
 
 .content {
@@ -28,13 +20,6 @@ body {
 iframe {
     margin-bottom: 8rem;
 }
-.sparkle {
-    position: fixed;
-    z-index: 6;
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  
 
 @media all and (max-width: 700px) {
     body {
