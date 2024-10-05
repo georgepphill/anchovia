@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const mouseOffsetY = e.clientY - centerY;
 
         // Set the direction in the opposite way (adjusting by a factor to control speed)
-        directionX = -mouseOffsetX * speedFactor;
-        directionY = -mouseOffsetY * speedFactor;
+        directionX = -mouseOffsetX;
+        directionY = -mouseOffsetY;
     });
 
     // Event listener for touch movement (Mobile)
