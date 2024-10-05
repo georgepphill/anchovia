@@ -11,7 +11,7 @@ body {
     margin-bottom:6rem;
 }
 .anchovy:hover{
-    cursor:url(cursor-small.png), pointer;
+    cursor:url(cursor-small.png), pointer!important;
 }
 .content {
     width: 100%;
