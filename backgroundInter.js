@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let offsetY = 0;
     let directionX = 0;
     let directionY = 0;
-    const speedFactor = 0.0001; // Control speed of movement, smaller value for slower movement
+    const speedFactor = 0.01; // Control speed of movement, smaller value for slower movement
 
     function updateBackgroundPosition() {
         // Adjust the movement direction for a smooth background transition
@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const mouseOffsetY = e.clientY - centerY;
 
         // Set the direction in the opposite way (adjusting by a factor to control speed)
-        directionX = -mouseOffsetX;
-        directionY = -mouseOffsetY;
+        directionX = -mouseOffsetX * speedFactor;
+        directionY = -mouseOffsetY * speedFactor;
     });
 
     // Event listener for touch movement (Mobile)
