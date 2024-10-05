@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', function () {
     let offsetY = 0;
     let directionX = 0;
     let directionY = 0;
-    const speedFactor = 0.01; // Control speed of movement, smaller value for slower movement
+    const speed = 2; // Constant speed for the movement
 
     function updateBackgroundPosition() {
         // Adjust the movement direction for a smooth background transition
-        offsetX += directionX;
-        offsetY += directionY;
+        offsetX += directionX * speed;
+        offsetY += directionY * speed;
 
         document.body.style.backgroundPosition = `${-50 + offsetX}px ${-50 + offsetY}px`;
 
@@ -30,9 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const mouseOffsetX = e.clientX - centerX;
         const mouseOffsetY = e.clientY - centerY;
 
-        // Set the direction in the opposite way (adjusting by a factor to control speed)
-        directionX = -mouseOffsetX * speedFactor;
-        directionY = -mouseOffsetY * speedFactor;
+        // Calculate the direction vector away from the mouse
+        const length = Math.sqrt(mouseOffsetX * mouseOffsetX + mouseOffsetY * mouseOffsetY);
+        if (length !== 0) {
+            directionX = -mouseOffsetX / length;
+            directionY = -mouseOffsetY / length;
+        }
     });
 
     // Event listener for touch movement (Mobile)
@@ -51,9 +54,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const touchOffsetX = touch.clientX - centerX;
         const touchOffsetY = touch.clientY - centerY;
 
-        // Set the direction in the opposite way (adjusting by a factor to control speed)
-        directionX = -touchOffsetX * speedFactor;
-        directionY = -touchOffsetY * speedFactor;
+        // Calculate the direction vector away from the touch point
+        const length = Math.sqrt(touchOffsetX * touchOffsetX + touchOffsetY * touchOffsetY);
+        if (length !== 0) {
+            directionX = -touchOffsetX / length;
+            directionY = -touchOffsetY / length;
+        }
     });
 
     // Start the continuous background movement
