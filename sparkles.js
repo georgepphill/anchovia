@@ -177,15 +177,14 @@ function create_star(x, y, probability = 1.0) {
     }
     // get a color (for the star)
     function get_random_color() {
-        let c = [];
-        c[0] = 255;
-        c[1] = Math.floor(Math.random() * 256);
-        c[2] = Math.floor(Math.random() * (256 - c[1] / 2));
-        c.sort(function () {
-            return (0.5 - Math.random());
-        });
-        return ("rgb(" + c[0] + ", " + c[1] + ", " + c[2] + ")");
-    }
+    // Define colors for white and light yellow
+    const colors = [
+        "rgb(255, 255, 255)", // white
+        "rgb(255, 255, 204)"  // very light yellow
+    ];
+    // Randomly pick one of the defined colors
+    return colors[Math.floor(Math.random() * colors.length)];
+}
     // which star index do we want to use (either a blank index, or the star closest to dying)
     let min_lifetime = sparkle_lifetime * 2 + 1;
     let min_index = NaN;
