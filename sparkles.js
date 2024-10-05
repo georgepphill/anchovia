@@ -59,7 +59,7 @@ function sparkle_destroy() {
 }
 
 
-// Add touch event listeners
+// initialize but only if called
 function sparkle_init() {
     // to create one div per star / dot
     function create_div(height, width) {
@@ -68,25 +68,28 @@ function sparkle_init() {
         div.style.height = height + "px";
         div.style.width = width + "px";
         div.style.overflow = "hidden";
-        return div;
+        return (div);
     }
-    
     // create stars and dots
     for (let i = 0; i < sparkles; i++) {
+        // create div for dot
         const tiny_div = create_div(3, 3);
         tiny_div.style.visibility = "hidden";
         tiny_div.style.zIndex = "999";
+        // if there's an existing dot, remove it
         if (tiny[i]) {
-            document.body.removeChild(tiny[i]);
+            document.body.removeChild(tiny[i])
         }
+        // append new dot to document
         document.body.appendChild(tiny_div);
         tiny[i] = tiny_div;
         tiny_remaining_ticks[i] = null;
-
+        // create div for star
         const star_div = create_div(5, 5);
         star_div.style.backgroundColor = "transparent";
         star_div.style.visibility = "hidden";
         star_div.style.zIndex = "999";
+        // create the actual star using two more divs
         const bar_horiz = create_div(1, 5);
         const bar_vert = create_div(5, 1);
         star_div.appendChild(bar_horiz);
@@ -95,63 +98,57 @@ function sparkle_init() {
         bar_horiz.style.left = "0px";
         bar_vert.style.top = "0px";
         bar_vert.style.left = "2px";
+        // if there's an existing star, remove it
         if (star[i]) {
-            document.body.removeChild(star[i]);
+            document.body.removeChild(star[i])
         }
+
+        // append new star to document
         document.body.appendChild(star_div);
         star[i] = star_div;
         star_remaining_ticks[i] = null;
     }
-    
+    // handle resize
     window.addEventListener('resize', function () {
+        // clear everything because I don't want to bother checking which will be out-of-bounds
         for (let i = 0; i < sparkles; i++) {
+            // clear all stars
             star_remaining_ticks[i] = null;
             star[i].style.left = "0px";
             star[i].style.top = "0px";
             star[i].style.visibility = "hidden";
+            // clear all dots
             tiny_remaining_ticks[i] = null;
             tiny[i].style.top = '0px';
             tiny[i].style.left = '0px';
             tiny[i].style.visibility = "hidden";
         }
+        // reset cached height last
         doc_height = document.documentElement.scrollHeight;
         doc_width = document.documentElement.scrollWidth;
     });
-
+    // when the mouse is moved, create stars where the pointer is and where the pointer PROBABLY was
     document.onmousemove = function (e) {
-        if (sparkles_enabled && !e.buttons) {
-            create_sparkles(e.pageX, e.pageY, e.movementX, e.movementY);
+        if (sparkles_enabled && !e.buttons) {  // allow more sparkles the faster the mouse moves
+            const distance = Math.sqrt(Math.pow(e.movementX, 2) + Math.pow(e.movementY, 2));
+            const delta_x = e.movementX * sparkle_distance * 2 / distance;
+            const delta_y = e.movementY * sparkle_distance * 2 / distance;
+            const probability = distance / sparkle_distance;
+            let cumulative_x = 0;
+            // where to make the star: where the moise pointer is for now
+            let mouse_y = e.pageY;
+            let mouse_x = e.pageX;
+            // create a star and move back until we reach where the mouse was before
+            while (Math.abs(cumulative_x) < Math.abs(e.movementX)) {
+                create_star(mouse_x, mouse_y, probability);
+                let delta = Math.random();
+                mouse_x -= delta_x * delta;
+                mouse_y -= delta_y * delta;
+                cumulative_x += delta_x * delta;
+            }
         }
     };
-
-    // Add touchstart and touchmove listeners for mobile support
-    document.addEventListener("touchstart", handleTouch, false);
-    document.addEventListener("touchmove", handleTouch, false);
-
-    function handleTouch(e) {
-        if (sparkles_enabled && e.touches.length > 0) {
-            const touch = e.touches[0];
-            create_sparkles(touch.pageX, touch.pageY, 0, 0);
-        }
-    }
 }
-
-function create_sparkles(mouse_x, mouse_y, movementX, movementY) {
-    const distance = Math.sqrt(Math.pow(movementX, 2) + Math.pow(movementY, 2));
-    const delta_x = movementX * sparkle_distance * 2 / distance;
-    const delta_y = movementY * sparkle_distance * 2 / distance;
-    const probability = distance / sparkle_distance;
-    let cumulative_x = 0;
-
-    while (Math.abs(cumulative_x) < Math.abs(movementX)) {
-        create_star(mouse_x, mouse_y, probability);
-        let delta = Math.random();
-        mouse_x -= delta_x * delta;
-        mouse_y -= delta_y * delta;
-        cumulative_x += delta_x * delta;
-    }
-}
-
 
 // animation loop
 function animate_sparkles(fps = 60) {
