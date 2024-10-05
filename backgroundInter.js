@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let offsetY = 0;
     let directionX = 0;
     let directionY = 0;
-    const speed = 2; // Constant speed for the movement
+    const speed = 1; // Constant speed for the movement
 
     function updateBackgroundPosition() {
         // Adjust the movement direction for a smooth background transition
