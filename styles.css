@@ -9,7 +9,7 @@ body {
 }
 .anchovy {
     margin-bottom:6rem;
-    cursor:url(cursor.png), auto;
+    cursor:url("cursor.png"), pointer;
 
 }
 .content {
