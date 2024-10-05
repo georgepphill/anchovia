@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     let offsetX = 0;
     let offsetY = 0;
-    let directionX = 0;
-    let directionY = 0;
-    const speed = 1; // Constant speed for the movement
+    let directionX = 0.707; // Initial direction towards bottom right (normalized)
+    let directionY = 0.707; // Initial direction towards bottom right (normalized)
+    const speed = 2; // Constant speed for the movement
 
     function updateBackgroundPosition() {
         // Adjust the movement direction for a smooth background transition
