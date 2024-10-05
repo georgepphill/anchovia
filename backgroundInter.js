@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     let offsetX = 0;
     let offsetY = 0;
-    let directionX = 0.5; // Set a constant speed for X direction
-    let directionY = 0.5; // Set a constant speed for Y direction
+    let directionX = 0;
+    let directionY = 0;
+    const speedFactor = 0.05; // Control speed of movement, smaller value for slower movement
 
     function updateBackgroundPosition() {
         // Adjust the movement direction for a smooth background transition
@@ -25,9 +26,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const centerX = windowWidth / 2;
         const centerY = windowHeight / 2;
 
-        // Determine direction based on mouse position relative to the center
-        directionX = e.clientX > centerX ? 0.5 : -0.5; // Move right if mouse is right of center, otherwise move left
-        directionY = e.clientY > centerY ? 0.5 : -0.5; // Move down if mouse is below center, otherwise move up
+        // Calculate the offset of the mouse from the center
+        const mouseOffsetX = e.clientX - centerX;
+        const mouseOffsetY = e.clientY - centerY;
+
+        // Set the direction in the opposite way (adjusting by a factor to control speed)
+        directionX = -mouseOffsetX * speedFactor;
+        directionY = -mouseOffsetY * speedFactor;
     });
 
     // Event listener for touch movement (Mobile)
@@ -42,9 +47,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const centerX = windowWidth / 2;
         const centerY = windowHeight / 2;
 
-        // Determine direction based on touch position relative to the center
-        directionX = touch.clientX > centerX ? 0.5 : -0.5; // Move right if touch is right of center, otherwise move left
-        directionY = touch.clientY > centerY ? 0.5 : -0.5; // Move down if touch is below center, otherwise move up
+        // Calculate the offset of the touch from the center
+        const touchOffsetX = touch.clientX - centerX;
+        const touchOffsetY = touch.clientY - centerY;
+
+        // Set the direction in the opposite way (adjusting by a factor to control speed)
+        directionX = -touchOffsetX * speedFactor;
+        directionY = -touchOffsetY * speedFactor;
     });
 
     // Start the continuous background movement
